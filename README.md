@@ -1,2 +1,4 @@
-# ScriptsUnity
-ScriptsUnity
+Здесь будут мои скрипты по Unity, цель набить 100 скрептов которые я буду понимать.
+
+1.ObjectDetectedtoDistanse - Дистанция от Обьекта до Enemy, выводиться в TextMesh.
+2.
