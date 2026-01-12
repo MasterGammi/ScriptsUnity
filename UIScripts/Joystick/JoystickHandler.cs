@@ -21,7 +21,19 @@ public abstract class JoystickHandler : MonoBehaviour, IDragHandler, IPointerDow
 
     public void OnDrag(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        Vector2 joystickPosition;
+
+        if(RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystickBackgraund.rectTransform, eventData.position, null, out joystickPosition))
+        {
+            joystickPosition.x = (joystickPosition.x * 2 / _joystickBackgraund.rectTransform.sizeDelta.x);
+            joystickPosition.y = (joystickPosition.y * 2 / _joystickBackgraund.rectTransform.sizeDelta.y);
+
+            _joystickVector = new Vector2(joystickPosition.x, joystickPosition.y);
+
+            _joystickVector = (_joystickVector.magnitude > 1f) ? _joystickVector.normalized : _joystickVector;
+
+            _joystick.rectTransform.anchoredPosition = new Vector2(_joystickVector.x * (_joystickBackgraund.rectTransform.sizeDelta.x / 2), _joystickVector.y * (_joystickBackgraund.rectTransform.sizeDelta.y / 2));
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
