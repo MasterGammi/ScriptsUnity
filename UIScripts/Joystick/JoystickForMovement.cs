@@ -1,16 +1,10 @@
 using UnityEngine;
 
-public class JoystickForMovement : MonoBehaviour
+public class JoystickForMovement : JoystickHandler
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Vector3 ReturnVectorDirection()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (_joystickVector.x != 0 || _joystickVector.y != 0) return new Vector3(_joystickVector.x, 0, _joystickVector.y);
+        else return new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
     }
 }

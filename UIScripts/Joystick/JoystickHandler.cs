@@ -8,15 +8,16 @@ public abstract class JoystickHandler : MonoBehaviour, IDragHandler, IPointerDow
     [SerializeField] private Image _joystick;
     [SerializeField] private Image _joystickArea;
 
-    private Vector2 _joystickPosition;
+    private Vector2 _joystickStartPosition;
 
     protected Vector2 _joystickVector;
 
-    [SerializeField] private Color[] _joystickColor = new Color[2];
+    [SerializeField] private Color _joystickColor;
 
     private void Start()
     {
-        _joystickPosition = _joystickBackgraund.rectTransform.anchoredPosition;
+        _joystickStartPosition = _joystickBackgraund.rectTransform.anchoredPosition;
+        _joystick.color = _joystickColor;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -38,11 +39,21 @@ public abstract class JoystickHandler : MonoBehaviour, IDragHandler, IPointerDow
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        Vector2 joystickBackgroundPosition;
+
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystickArea.rectTransform, eventData.position, null, out joystickBackgroundPosition))
+        {
+
+            _joystickBackgraund.rectTransform.anchoredPosition = new Vector2(joystickBackgroundPosition.x, joystickBackgroundPosition.y);
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        _joystickBackgraund.rectTransform.anchoredPosition = _joystickStartPosition;
+
+        _joystickVector = Vector2.zero;
+        _joystick.rectTransform.anchoredPosition = Vector2.zero;
     }
+
 }
