@@ -9,6 +9,9 @@ public class HealthbarOverhead : MonoBehaviour
     [Header("—сылка на Health")]
     [SerializeField] private Health _health;
 
+    [Header("√радиент")]
+    [SerializeField] private Gradient _gradient;
+
 
     private void Awake()
     {
@@ -23,5 +26,6 @@ public class HealthbarOverhead : MonoBehaviour
     {
         Debug.Log(value);
         _barFilling.fillAmount = value;
+        _barFilling.color = _gradient.Evaluate(value);
     }
 }
