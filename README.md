@@ -3,3 +3,7 @@
 1.ObjectDetectedtoDistanse - Дистанция от Обьекта до Enemy, выводиться в TextMesh.  
 2.PlayerController - Просто движение WASD с использованием CharacterController  
 3.JoystickForMovement - Джостик на экране, на области можно иницировать появление джостика, далее управлять как WASD.  
+4.Health - Жизни Обьекта.  
+5.HealthbarOverhead - HP бар над головой.  
+6.JumpHendler - Прыжок обьекта  
+7.Rotator - Поворот для обьекта, спользую для тестов  
